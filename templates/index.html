@@ -7,11 +7,11 @@
     <title>YouTube Downloader</title>
     <script defer>
         function download() {
-            console.log('hello');
+            // console.log('hello');
             const input = document.getElementById('download').value;
-            console.log('input:', input)
-            const url = `/download/?youtube=${input}&resolution=${480}`;
-            console.log('input:', input)
+            // console.log('input:', input)
+            const url = `/download/?youtube=${input}`;
+            // console.log('input:', input)
             window.open(url).focus;
         }
     </script>
