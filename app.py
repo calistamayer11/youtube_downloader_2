@@ -14,19 +14,26 @@ def index():
 def download():
     # print(youtube_link)
     youtube_link = request.args.get("youtube")
-    # video_resolution = request.args.get("resolution")
+    options = request.args.get("options")
+    print(options)
     buffer = BytesIO()
-    video = (
-        YouTube(youtube_link).streams.filter(file_extension="mp4", res="720p").first()
-    )
+    if options == "720p" or options == "480p":
+        video = (
+            YouTube(youtube_link)
+            .streams.filter(file_extension="mp4", res=options)
+            .first()
+        )
+    else:
+        video = YouTube(youtube_link).streams.get_audio_only()
+
     title = video.title
     print(title)
     video.stream_to_buffer(buffer)
     buffer.seek(0)
+    # return {"test": "test"}
     return send_file(
         buffer,
         as_attachment=True,
-        # attachment_filename="video.mp4",
         download_name=f"{title}.mp4",
         mimetype="video/mp4",
     )
