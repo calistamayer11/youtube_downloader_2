@@ -5,35 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YouTube Downloader</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <style>
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      #download {
+        width: 25vw;
+        min-width: 20rem;
+      }
+    </style>
     <script defer>
       function download() {
-        // console.log('hello');
         const input = document.getElementById("download").value;
-        // console.log('input:', input)
-        const url = `/download/?youtube=${input}&options=${options}`;
-        // console.log('input:', input)
-        window.open(url).focus;
-      }
-      function download2() {
-        const input = document.getElementById("download").value;
-        const options = document.querySelector('input[name="format"]:checked').value;
-        console.log(options)
+        const options = document.querySelector(
+          'input[name="format"]:checked'
+        ).value;
         const url = `/download/?youtube=${input}&options=${options}`;
         window.open(url).focus;
       }
     </script>
   </head>
   <body>
-    <label for="YouTube">Provide YouTube Link</label>
-    <input id="download" type="text" name="YouTube" />
-    <input type="button" onclick="download2()" value="submit" />
-    <br />
-    <input type="radio" id="radio1" name="format" value="480p" checked="checked" />
-    <label for="radio1"> 480p</label><br />
-    <input type="radio" id="radio2" name="format" value="720p" />
-    <label for="radio2"> 720p</label><br />
-    <input type="radio" id="radio3" name="format" value="audio" />
-    <label for="radio3"> Audio</label>
-    <br />
+    <div class="container">
+      <div class="inner-container">
+        <h1>
+          <label for="YouTube">Provide YouTube Link</label>
+        </h1>
+      </div>
+      <input id="download" type="text" name="YouTube" />
+
+      <div class="inner-container">
+        <br />
+        <input
+          type="radio"
+          id="radio1"
+          name="format"
+          value="480p"
+          checked="checked"
+        />
+        <label for="radio1"> 480p</label><br />
+        <input type="radio" id="radio2" name="format" value="720p" />
+        <label for="radio2"> 720p</label><br />
+        <input type="radio" id="radio3" name="format" value="audio" />
+        <label for="radio3"> Audio</label>
+      </div>
+      <br />
+      <button type="button" onclick="download()" class="btn btn-primary">
+        Submit
+      </button>
+    </div>
   </body>
 </html>
