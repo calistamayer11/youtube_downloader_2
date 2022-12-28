@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YouTube Downloader</title>
     <script defer>
-        function download() {
-            // console.log('hello');
-            const input = document.getElementById('download').value;
-            // console.log('input:', input)
-            const url = `/download/?youtube=${input}`;
-            // console.log('input:', input)
-            window.open(url).focus;
-        }
+      function download() {
+        // console.log('hello');
+        const input = document.getElementById("download").value;
+        // console.log('input:', input)
+        const url = `/download/?youtube=${input}&options=${options}`;
+        // console.log('input:', input)
+        window.open(url).focus;
+      }
+      function download2() {
+        const input = document.getElementById("download").value;
+        const options = document.querySelector('input[name="format"]:checked').value;
+        console.log(options)
+        const url = `/download/?youtube=${input}&options=${options}`;
+        window.open(url).focus;
+      }
     </script>
-
-</head>
-<body>
+  </head>
+  <body>
     <label for="YouTube">Provide YouTube Link</label>
-    <input id='download' type="text" name="YouTube">
-    <input type="button" onclick="download()" value="submit">
-</body>
+    <input id="download" type="text" name="YouTube" />
+    <input type="button" onclick="download2()" value="submit" />
+    <br />
+    <input type="radio" id="radio1" name="format" value="480p" checked="checked" />
+    <label for="radio1"> 480p</label><br />
+    <input type="radio" id="radio2" name="format" value="720p" />
+    <label for="radio2"> 720p</label><br />
+    <input type="radio" id="radio3" name="format" value="audio" />
+    <label for="radio3"> Audio</label>
+    <br />
+  </body>
 </html>
